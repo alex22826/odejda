@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>odejda — магазин одежды в Ташкенте</title>
+  <meta name="description" content="Капсульный гардероб из натуральных тканей: пальто, трикотаж, обувь и аксессуары. Доставка по Ташкенту, примерка перед оплатой.">
+  <meta name="theme-color" content="#f4efe7">
+  <meta property="og:title" content="odejda — магазин одежды">
+  <meta property="og:description" content="Новая коллекция осень — зима 2026. Доставка по Ташкенту и примерка перед оплатой.">
+  <meta property="og:image" content="assets/img/hero-1.webp">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23161412'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-style='italic' font-size='38' fill='%23f4efe7' text-anchor='middle'%3Eo%3C/text%3E%3C/svg%3E">
+  <link rel="preload" href="assets/fonts/manrope-cyr.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/cormorant-cyr-500.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/style.css?v=1">
+  <script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+  <a class="skip" href="#catalog">Перейти к каталогу</a>
+
+  <div class="announce" id="announce"></div>
+
+  <header class="header" id="header">
+    <div class="container header__row">
+      <button class="icon-btn burger" id="burger" aria-label="Меню" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+      <a class="logo" href="./" aria-label="На главную"><span data-store-name>odejda</span><i>.</i></a>
+      <nav class="nav" id="nav" aria-label="Основное меню">
+        <a href="#catalog" data-go="all">Каталог</a>
+        <a href="#catalog" data-go="women">Женщинам</a>
+        <a href="#catalog" data-go="men">Мужчинам</a>
+        <a href="#catalog" data-go="new">Новинки</a>
+        <a href="#catalog" data-go="sale" class="nav__sale">Скидки</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+      <div class="header__actions">
+        <button class="icon-btn" id="searchBtn" aria-label="Поиск">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>
+        </button>
+        <button class="icon-btn" id="favBtn" aria-label="Избранное">
+          <svg viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.4a4.3 4.3 0 0 1 7.5 2.4C19.5 15.4 12 20 12 20Z"/></svg>
+          <b class="count" id="favCount" hidden>0</b>
+        </button>
+        <button class="icon-btn" id="cartBtn" aria-label="Корзина">
+          <svg viewBox="0 0 24 24"><path d="M5 8h14l-1.2 11.1a1 1 0 0 1-1 .9H7.2a1 1 0 0 1-1-.9L5 8Z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg>
+          <b class="count" id="cartCount" hidden>0</b>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Баннер-слайдер -->
+    <section class="hero" id="hero" aria-roledescription="carousel" aria-label="Коллекции">
+      <div class="container hero__grid">
+        <div class="hero__text" id="heroText"></div>
+        <div class="hero__media" id="heroMedia"></div>
+      </div>
+      <div class="container hero__controls">
+        <div class="hero__dots" id="heroDots" role="tablist"></div>
+        <div class="hero__arrows">
+          <button class="round-btn" id="heroPrev" aria-label="Предыдущий слайд">
+            <svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>
+          </button>
+          <button class="round-btn" id="heroNext" aria-label="Следующий слайд">
+            <svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>Новая коллекция</span><i>✦</i><span>Примерка перед оплатой</span><i>✦</i><span>Возврат 14 дней</span><i>✦</i><span>Доставка за 1 день</span><i>✦</i><span>Натуральные ткани</span><i>✦</i>
+        <span>Новая коллекция</span><i>✦</i><span>Примерка перед оплатой</span><i>✦</i><span>Возврат 14 дней</span><i>✦</i><span>Доставка за 1 день</span><i>✦</i><span>Натуральные ткани</span><i>✦</i>
+      </div>
+    </div>
+
+    <!-- Категории -->
+    <section class="section" id="categories">
+      <div class="container">
+        <div class="section__head" data-reveal>
+          <h2 class="h2">Выберите <em>раздел</em></h2>
+          <p class="section__lead">Базовые вещи и акцентные детали — всё, чтобы собрать гардероб на сезон.</p>
+        </div>
+        <div class="cats" id="cats"></div>
+      </div>
+    </section>
+
+    <!-- Каталог -->
+    <section class="section section--catalog" id="catalog">
+      <div class="container">
+        <div class="section__head section__head--row" data-reveal>
+          <h2 class="h2">Каталог <sup id="catalogCount"></sup></h2>
+          <div class="toolbar">
+            <label class="search">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>
+              <input type="search" id="searchInput" placeholder="Поиск: пальто, джинсы…" autocomplete="off">
+            </label>
+            <label class="select">
+              <select id="sortSelect" aria-label="Сортировка">
+                <option value="popular">Сначала популярные</option>
+                <option value="new">Сначала новые</option>
+                <option value="price-asc">Дешевле</option>
+                <option value="price-desc">Дороже</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <div class="chips" id="chips" role="tablist" aria-label="Фильтр по разделам"></div>
+        <div class="grid" id="grid" aria-live="polite"></div>
+        <div class="catalog__more">
+          <button class="btn btn--ghost" id="moreBtn" hidden>Показать ещё</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Образ недели: фото с точками-товарами -->
+    <section class="section look" id="look">
+      <div class="container look__grid">
+        <div class="look__media" id="lookMedia" data-reveal></div>
+        <div class="look__info" data-reveal>
+          <p class="eyebrow">Собери образ</p>
+          <h2 class="h2" id="lookTitle"></h2>
+          <p class="section__lead" id="lookText"></p>
+          <ul class="look__list" id="lookList"></ul>
+          <div class="look__total">
+            <span>Весь образ</span>
+            <strong id="lookTotal"></strong>
+          </div>
+          <button class="btn btn--dark btn--wide" id="lookAdd">Добавить образ в корзину</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Хиты -->
+    <section class="section" id="hits">
+      <div class="container">
+        <div class="section__head section__head--row" data-reveal>
+          <h2 class="h2">Хиты <em>недели</em></h2>
+          <div class="hero__arrows">
+            <button class="round-btn" id="hitsPrev" aria-label="Назад">
+              <svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>
+            </button>
+            <button class="round-btn" id="hitsNext" aria-label="Вперёд">
+              <svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="rail" id="hitsRail"></div>
+    </section>
+
+    <!-- Акция с таймером -->
+    <section class="promo" id="promo" hidden>
+      <div class="container promo__grid">
+        <div class="promo__text" data-reveal>
+          <p class="eyebrow eyebrow--light" id="promoEyebrow"></p>
+          <h2 class="h2 h2--light" id="promoTitle"></h2>
+          <p class="promo__lead" id="promoText"></p>
+          <div class="timer" id="promoTimer" aria-label="До конца акции"></div>
+          <button class="btn btn--light" id="promoBtn">Выбрать со скидкой</button>
+        </div>
+        <div class="promo__media" id="promoMedia" data-reveal></div>
+      </div>
+    </section>
+
+    <!-- О магазине -->
+    <section class="section about" id="about">
+      <div class="container about__grid">
+        <div class="about__media" data-reveal>
+          <img src="assets/img/about-1.webp" alt="Вешалка с одеждой из натуральных тканей" loading="lazy" width="1000" height="1200">
+        </div>
+        <div class="about__text" data-reveal>
+          <p class="eyebrow">О магазине</p>
+          <h2 class="h2">Меньше вещей — <em>больше стиля</em></h2>
+          <p class="section__lead">Мы собираем капсульные коллекции: каждую вещь легко сочетать с другими. Отбираем ткани вручную, проверяем посадку на живых людях и привозим только то, что носили бы сами.</p>
+          <ul class="perks">
+            <li><b>Примерка перед оплатой</b><span>Курьер подождёт 15 минут, пока вы примеряете</span></li>
+            <li><b>Возврат 14 дней</b><span>Не подошло — вернём деньги без вопросов</span></li>
+            <li><b>Доставка за 1 день</b><span>По Ташкенту, бесплатно от суммы <span data-free-from></span></span></li>
+            <li><b>Удобная оплата</b><span>Наличными или картой при получении</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Контакты -->
+    <section class="section contacts" id="contacts">
+      <div class="container contacts__grid">
+        <div class="contacts__info" data-reveal>
+          <p class="eyebrow">Контакты</p>
+          <h2 class="h2">Приходите <em>на примерку</em></h2>
+          <dl class="contacts__list" id="contactsList"></dl>
+          <div class="socials" id="socials"></div>
+        </div>
+        <div class="contacts__map" id="map" data-reveal></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div>
+        <a class="logo logo--light" href="./"><span data-store-name>odejda</span><i>.</i></a>
+        <p class="footer__note">Одежда, которую хочется носить каждый день.</p>
+      </div>
+      <nav class="footer__col" aria-label="Каталог">
+        <b>Каталог</b>
+        <a href="#catalog" data-go="women">Женщинам</a>
+        <a href="#catalog" data-go="men">Мужчинам</a>
+        <a href="#catalog" data-go="shoes">Обувь</a>
+        <a href="#catalog" data-go="accessories">Аксессуары</a>
+      </nav>
+      <div class="footer__col">
+        <b>Покупателям</b>
+        <span>Доставка и оплата</span>
+        <span>Возврат и обмен</span>
+        <span>Таблица размеров</span>
+      </div>
+      <div class="footer__col" id="footerContacts">
+        <b>Связаться</b>
+      </div>
+    </div>
+    <div class="container footer__bottom">
+      <span>© <span id="year"></span> <span data-store-name>odejda</span>. Все права защищены.</span>
+      <span>Ташкент</span>
+    </div>
+  </footer>
+
+  <!-- Карточка товара -->
+  <div class="modal" id="productModal" hidden>
+    <div class="modal__backdrop" data-close></div>
+    <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="pmTitle">
+      <button class="modal__close icon-btn" data-close aria-label="Закрыть">
+        <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+      <div class="pm" id="pmBody"></div>
+    </div>
+  </div>
+
+  <!-- Корзина и оформление -->
+  <div class="drawer" id="cartDrawer" hidden>
+    <div class="drawer__backdrop" data-close></div>
+    <aside class="drawer__panel" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+      <div class="drawer__head">
+        <h3 id="cartTitle">Корзина</h3>
+        <button class="icon-btn" data-close aria-label="Закрыть">
+          <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        </button>
+      </div>
+      <div class="drawer__body" id="cartBody"></div>
+      <div class="drawer__foot" id="cartFoot"></div>
+    </aside>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="assets/js/store.js?v=1"></script>
+  <script src="assets/js/shop.js?v=1"></script>
+</body>
+</html>

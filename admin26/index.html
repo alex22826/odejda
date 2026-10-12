@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Панель управления — odejda</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23b4482a'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-style='italic' font-size='38' fill='%23fff' text-anchor='middle'%3Eo%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="admin.css?v=1">
+</head>
+<body>
+  <!-- Вход -->
+  <main class="login" id="loginView" hidden>
+    <form class="login__card" id="loginForm" autocomplete="on">
+      <div class="logo">odejda<i>.</i></div>
+      <h1>Панель управления</h1>
+      <p class="muted">Войдите, чтобы редактировать товары и следить за заказами.</p>
+      <label class="field">Логин
+        <input name="login" autocomplete="username" required autofocus>
+      </label>
+      <label class="field">Пароль
+        <span class="pass">
+          <input name="password" type="password" autocomplete="current-password" required>
+          <button type="button" class="pass__eye" data-eye aria-label="Показать пароль">
+            <svg viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </span>
+      </label>
+      <p class="error" id="loginError" hidden></p>
+      <button class="btn btn--dark btn--wide" type="submit">Войти</button>
+      <p class="mode-note" id="loginMode"></p>
+    </form>
+  </main>
+
+  <!-- Панель -->
+  <div class="app" id="appView" hidden>
+    <aside class="side" id="side">
+      <div class="side__brand">
+        <span class="logo">odejda<i>.</i></span>
+        <span class="tag">admin</span>
+      </div>
+      <nav class="side__nav" id="sideNav">
+        <a href="#products" data-view="products">
+          <svg viewBox="0 0 24 24"><path d="M8 4 4 6.5V10l2 .5V20h12v-9.5l2-.5V6.5L16 4a4 4 0 0 1-8 0Z"/></svg>Товары
+        </a>
+        <a href="#orders" data-view="orders">
+          <svg viewBox="0 0 24 24"><path d="M5 8h14l-1.2 11.1a1 1 0 0 1-1 .9H7.2a1 1 0 0 1-1-.9L5 8Z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg>Заказы <b class="pill" id="newOrders" hidden></b>
+        </a>
+        <a href="#home" data-view="home">
+          <svg viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><path d="m3.5 15 5-4.5 4 3.5 3-2.5 5 4"/></svg>Главная страница
+        </a>
+        <a href="#contacts" data-view="contacts">
+          <svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Контакты
+        </a>
+        <a href="#access" data-view="access">
+          <svg viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg>Доступы
+        </a>
+      </nav>
+      <div class="side__foot">
+        <a class="side__site" href="../" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>Открыть сайт
+        </a>
+        <div class="me">
+          <div class="me__avatar" id="meAvatar"></div>
+          <div class="me__text"><b id="meName"></b><small id="meRole"></small></div>
+          <button class="icon-btn" id="logoutBtn" aria-label="Выйти" title="Выйти">
+            <svg viewBox="0 0 24 24"><path d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3M10 16l4-4-4-4M14 12H4"/></svg>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <div class="main">
+      <div class="demo" id="demoBar" hidden>
+        <b>Демо-режим.</b> Сайт открыт без сервера (GitHub Pages / локально): изменения сохраняются только в этом браузере.
+        Покупатели их увидят, когда сайт будет размещён на хостинге с PHP, — или выгрузите файл каталога кнопкой «Экспорт».
+      </div>
+      <header class="topbar">
+        <button class="icon-btn menu-btn" id="menuBtn" aria-label="Меню">
+          <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <h1 id="viewTitle"></h1>
+        <div class="topbar__actions" id="viewActions"></div>
+      </header>
+      <section class="content" id="content"></section>
+    </div>
+  </div>
+
+  <!-- Редактор товара -->
+  <div class="drawer" id="editor" hidden>
+    <div class="drawer__backdrop" data-close></div>
+    <form class="drawer__panel" id="editorForm" novalidate>
+      <div class="drawer__head">
+        <h2 id="editorTitle">Новый товар</h2>
+        <button type="button" class="icon-btn" data-close aria-label="Закрыть">
+          <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        </button>
+      </div>
+      <div class="drawer__body" id="editorBody"></div>
+      <div class="drawer__foot" id="editorFoot"></div>
+    </form>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="../assets/js/store.js?v=1"></script>
+  <script src="admin.js?v=1"></script>
+</body>
+</html>

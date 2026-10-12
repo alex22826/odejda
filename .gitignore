@@ -1,0 +1,11 @@
+# данные и фото с боевого сервера — не в репозиторий
+storage/*
+!storage/.htaccess
+uploads/*
+!uploads/.htaccess
+
+# пароль администратора
+ADMIN-ACCESS.txt
+
+Thumbs.db
+.DS_Store
